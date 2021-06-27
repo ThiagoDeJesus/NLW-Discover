@@ -10,7 +10,10 @@ if(URLParams.has('alert')){
   switch(URLParams.get('alert')){
     case 'roomInexistent':
       openAlert();
-      break
+      break;
+    case 'incorrectPassword':
+      openAlert();
+      break;
   }
 }
 
