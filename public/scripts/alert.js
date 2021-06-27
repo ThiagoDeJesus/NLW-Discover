@@ -9,15 +9,27 @@ btnCloseAlert.addEventListener('click', closeAlert);
 if(URLParams.has('alert')){
   switch(URLParams.get('alert')){
     case 'roomInexistent':
-      openAlert();
+      openAlert('Código da sala incorreto :(', 'Por favor, verifique o código e tente novamente.');
       break;
     case 'incorrectPassword':
-      openAlert();
+      openAlert('Senha incorreta :(', 'Por favor, verifique a senha e tente novamente.');
+      break;
+    case 'roomDurationTime':
+      if(!window.sessionStorage.getItem('alert')){
+        window.sessionStorage.setItem('alert', true);
+        openAlert('A sala será apagada automáticamente', 'As salas e as perguntas são apagadas 24 horas após a criação.');
+      }
       break;
   }
 }
 
-function openAlert(){
+function openAlert(title, message){
+  const elementTitle = document.querySelector('.alert h3');
+  const elementMessage = document.querySelector('.alert p');
+
+  elementTitle.innerText = title;
+  elementMessage.innerText = message;
+  
   alertWrapper.classList.add('active')
 }
 

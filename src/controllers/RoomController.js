@@ -33,7 +33,7 @@ module.exports = {
 
     await db.close();
 
-    res.redirect(`/room/${roomId}`);
+    res.redirect(`/room/${roomId}/?alert=roomDurationTime`);
   },
   async open(req, res){
     const db = await Database();
@@ -61,7 +61,7 @@ module.exports = {
       return res.redirect(`/?alert=roomInexistent&roomId=${roomId}`);
     }
 
-    res.redirect(`/room/${roomId}`);
+    res.redirect(`/room/${roomId}/?alert=roomDurationTime`);
   },
   async cleanOld(){
     const db = await Database();
