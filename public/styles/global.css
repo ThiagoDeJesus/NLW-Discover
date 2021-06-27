@@ -109,8 +109,6 @@ button.grey,
     color: var(--grey-dark);
 }
 
-
-
 /*** HEADER ****/
 
 .content header{
@@ -120,4 +118,8 @@ button.grey,
 
 .content header img{
   width: 16.7rem;
+}
+
+.removed {
+  display: none;
 }
