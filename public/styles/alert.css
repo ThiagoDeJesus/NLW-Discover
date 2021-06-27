@@ -1,0 +1,47 @@
+.alert-wrapper.active{
+  visibility: visible;
+  opacity: 1;
+}
+
+.alert-wrapper{
+  display: flex;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(4, 9, 17, .8);
+  justify-content: center;
+  align-items: center;
+
+  visibility: hidden;
+  opacity: 0;
+}
+
+.alert{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: min(59rem, 90%);
+  background: var(--white);
+  margin: auto;
+
+  border-radius: .8rem;
+
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+
+  padding: 4rem 6.4rem 3rem;
+}
+
+.alert h3{
+  margin: 0 0 3rem;
+  font-size: 2.2rem;
+}
+
+.alert p{
+  font-size: 1.8rem;
+}
+
+.alert .button{
+  margin-top: 4rem;
+}
+
