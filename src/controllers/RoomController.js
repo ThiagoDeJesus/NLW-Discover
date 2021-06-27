@@ -38,7 +38,7 @@ module.exports = {
 
     const room = await db.all(`SELECT * FROM rooms WHERE id = ${roomId}`);
     if(room.length == 0){
-      return res.redirect(`/?alert=roomInexistent&roomId=${roomId}`,);
+      return res.redirect(`/?alert=roomInexistent&roomId=${roomId}`);
     }
 
     const questions = await db.all(`SELECT * FROM questions WHERE room = ${roomId} AND read = 0`);
@@ -53,6 +53,10 @@ module.exports = {
   },
   async enter(req, res){
     const roomId = req.body.roomId;
+
+    if(!roomId){
+      return res.redirect(`/?alert=roomInexistent&roomId=${roomId}`);
+    }
 
     res.redirect(`/room/${roomId}`);
   }
