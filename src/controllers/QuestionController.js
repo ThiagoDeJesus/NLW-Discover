@@ -39,5 +39,9 @@ module.exports = {
     )`);
     
     res.redirect(`/room/${roomId}`);
+  },
+  async deleteQuestions(room){
+    const db = await Database();
+    db.run(`DELETE FROM questions WHERE room=${room}`);
   }
 }

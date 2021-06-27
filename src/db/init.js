@@ -6,7 +6,8 @@ const initDb = {
 
       await db.exec(`CREATE TABLE rooms(
         id INTEGER PRIMARY KEY,
-        pass TEXT
+        pass TEXT,
+        origin DATE
       )`);
         
       await db.exec(`CREATE TABLE questions (

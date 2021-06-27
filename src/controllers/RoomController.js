@@ -1,4 +1,5 @@
 const Database = require('../db/config');
+const QuestionController = require('./QuestionController');
 
 module.exports = {
   async create(req, res) {
@@ -20,10 +21,12 @@ module.exports = {
         /* Inseri a sala no banco */
         await db.run(`INSERT INTO rooms (
                 id,
-                pass
+                pass,
+                origin
             ) VAlUES (
                 ${parseInt(roomId)},
-                "${pass}"
+                "${pass}",
+                date('now')
             )`);
       }
     }
@@ -59,5 +62,21 @@ module.exports = {
     }
 
     res.redirect(`/room/${roomId}`);
+  },
+  async cleanOld(){
+    const db = await Database();
+
+    const rooms = await db.all(`SELECT * FROM rooms`);
+    
+    const millisecondsDay = 60000 * 60 * 24;
+    const actualDate = Date.parse(new Date());
+
+    rooms.forEach((room) => {
+      const originDate = Date.parse(new Date(room.origin));
+      if((actualDate - millisecondsDay) > originDate){
+        QuestionController.deleteQuestions(room.id);
+        db.run(`DELETE FROM rooms WHERE id=${room.id}`);
+      }
+    })
   }
 }
